@@ -1,0 +1,32 @@
+<html layout:decorator="layout" xmlns:th="http://www.thymeleaf.org">
+<div layout:fragment="content">
+
+    <form action="#" th:action="@{/book/updateBook}" th:object="${book}" method="post">
+        <table class="table table-striped">
+            <tr>
+                <td>Name_Book: </td>
+                <td><input type="text" th:field="*{nameBook}"/></td>
+
+
+            </tr>
+            <tr>
+                <td>Author: </td>
+                <td><input type="text" th:field="*{author}"/></td>
+
+
+            </tr>
+            <tr>
+                <td>Count: </td>
+                <td><input type="text" th:field="*{count}"/></td>
+
+
+            </tr>
+            <input type="hidden" id="id" rows="5" class="form-control" name="id" th:value="${book.id}"/>
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </table>
+
+    </form>
+
+
+</div>
+</html>

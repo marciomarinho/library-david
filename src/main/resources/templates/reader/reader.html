@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+
+<div layout:fragment="content">
+    <h1 align="center">All readers</h1>
+
+    <a class="btn btn-primary" href="/reader/addNewReader">Add new reader</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Book in hands</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="reader : ${readers}">
+            <td th:text="${reader.id}"></td>
+            <td th:text="${reader.fullName}"></td>
+            <td th:text="${reader.bookInHand}"></td>
+
+            <td>
+                <a th:href="@{'/reader/{id}/deleteReader'(id=${reader.id})}" class="delete" th:attr="name=${reader}">
+                        <span class="fa-stack">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/reader/{id}/editReader'(id=${reader.id})}" class="edit" th:attr="name=${reader}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>

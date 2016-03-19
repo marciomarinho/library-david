@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+
+<div layout:fragment="content">
+
+    <h1 align="center">All books</h1>
+
+    <a class="btn btn-primary" href="/book/addNewBook">Add new book</a>
+
+
+    <table class="table table-striped">
+        <thead>
+
+        <tr>
+            <th>#</th>
+            <th>Name Book</th>
+            <th>Author</th>
+            <th>Count</th>
+
+        </tr>
+
+        </thead>
+        <tbody>
+
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.nameBook}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.count}"></td>
+            <td>
+                <a th:href="@{'/book/{id}/deleteBook'(id=${book.id})}" class="delete" th:attr="name=${book}">
+                        <span class="fa-stack">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/book/{id}/editBook'(id=${book.id})}" class="edit" th:attr="name=${book}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</html>

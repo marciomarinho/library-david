@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+
+<div layout:fragment="content">
+
+    <h1 align="Center"> Welcome to Library</h1>
+    <table class=" table-striped" align="center">
+        <thead>
+        <tr>
+            <th>Actions to do:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a class="btn btn-primary" href="/book">Show all books</a> <br/> <br/>
+            <a class="btn btn-primary" href="/reader">Show all readers</a> <br/> <br/>
+            <a class="btn btn-primary" href="/bookLeading">Show all books and readers</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</html>

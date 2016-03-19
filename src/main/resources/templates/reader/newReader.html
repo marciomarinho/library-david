@@ -1,0 +1,17 @@
+<html layout:decorator="layout" xmlns:th="http://www.thymeleaf.org">
+<div layout:fragment="content">
+
+    <form action="#" th:action="@{/reader/createReader}" th:object="${reader}" method="post">
+        <table class="table table-striped">
+            <tr>
+                <td>Full_Name: </td>
+                <td><input type="text" th:field="*{fullName}"/></td>
+                <!--<td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name error</td>-->
+            </tr>
+
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </table>
+
+    </form>
+</div>
+</html>

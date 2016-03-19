@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+
+<div layout:fragment="content">
+
+    <h1 align="center">All information about books and readers </h1>
+    <a class="btn btn-primary" href="/bookLeading/addNewBookLeading">Take a book</a>
+    <!--<span th:text="${expired}" ></span>-->
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Book Name</th>
+            <th>Reader Full Name</th>
+            <th>Date Took</th>
+            <th>Date Back</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bookLeading : ${bookLeadings}" >
+            <td th:text="${bookLeading.id}"></td>
+            <td>
+                <span th:each="book : ${bookLeading.book}">
+                    <span th:text="${book.nameBook}"></span>
+                </span>
+            </td>
+            <td>
+                <span th:each="reader : ${bookLeading.reader}">
+                    <span th:text="${reader.fullName}"></span>
+                </span>
+            </td>
+            <td th:text="${bookLeading.dateTook}"></td>
+            <td th:text="${bookLeading.dateBack}"></td>
+
+            <td>
+                <a th:href="@{'/bookLeading/{id}/deleteBookLeading'(id=${bookLeading.id})}" class="delete" th:attr="name=${bookLeading}">
+                        <span class="fa-stack">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </span>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>
