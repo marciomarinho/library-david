@@ -1,6 +1,6 @@
 package com.library.controllers;
 
-import com.library.domain.entities.Reader;
+import com.library.domain.Member;
 import com.library.services.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,33 +18,33 @@ public class ReaderController {
 
     @RequestMapping(method= RequestMethod.GET)
     public String readerFrame(Model model){
-        List<Reader> getAll = readerService.getAll();
+        List<Member> getAll = readerService.getAll();
         model.addAttribute("readers",getAll);
         return "reader/reader";
     }
 
     @RequestMapping(value="/addNewReader",method=RequestMethod.GET)
     public String addReader(Model model){
-        model.addAttribute("reader",new Reader());
+        model.addAttribute("reader",new Member());
         return "reader/newReader";
     }
 
     @RequestMapping(value="/createReader",method = RequestMethod.POST)
-    public String createReader(@ModelAttribute Reader reader){
-        readerService.addReader(reader);
+    public String createReader(@ModelAttribute Member member){
+        readerService.addReader(member);
         return "redirect:/reader";
     }
 
     @RequestMapping(value="/{id}/editReader",method=RequestMethod.GET)
     public String editsReader(@PathVariable long id, Model model){
-        Reader reader = readerService.findOne(id);
-        model.addAttribute("reader",reader);
+        Member member = readerService.findOne(id);
+        model.addAttribute("reader", member);
         return "reader/editReader";
     }
 
     @RequestMapping(value="/updateReader",method=RequestMethod.POST)
-    public String updateReader(@ModelAttribute Reader reader){
-        readerService.editReader(reader);
+    public String updateReader(@ModelAttribute Member member){
+        readerService.editReader(member);
         return "redirect:/reader";
     }
 

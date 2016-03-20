@@ -1,12 +1,10 @@
-package com.library.domain.entities;
-
-import com.library.domain.entities.BookLeading;
+package com.library.domain;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Reader {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,9 +17,9 @@ public class Reader {
     private String bookInHand;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "reader")
-    private List<BookLeading> bookLeading;
+    private List<BookLending> bookLending;
 
-    public Reader(){
+    public Member(){
 
     }
 
@@ -41,12 +39,12 @@ public class Reader {
         this.fullName = fullName;
     }
 
-    public List<BookLeading> getBookLeading() {
-        return bookLeading;
+    public List<BookLending> getBookLending() {
+        return bookLending;
     }
 
-    public void setBookLeading(List<BookLeading> bookLeading) {
-        this.bookLeading = bookLeading;
+    public void setBookLending(List<BookLending> bookLending) {
+        this.bookLending = bookLending;
     }
 
     public String getBookInHand() {

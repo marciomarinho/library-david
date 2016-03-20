@@ -1,12 +1,11 @@
-package com.library.domain.entities;
+package com.library.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class BookLeading {
+public class BookLending {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +15,7 @@ public class BookLeading {
     private List<Book> book;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Reader> reader;
+    private List<Member> member;
 
 
     @Column(name="date_took")
@@ -25,7 +24,7 @@ public class BookLeading {
     @Column(name="date_back")
     private Date dateBack;
 
-    public BookLeading(){
+    public BookLending(){
     }
 
 
@@ -45,12 +44,12 @@ public class BookLeading {
         this.id = id;
     }
 
-    public List<Reader> getReader() {
-        return reader;
+    public List<Member> getMember() {
+        return member;
     }
 
-    public void setReader(List<Reader> reader) {
-        this.reader = reader;
+    public void setMember(List<Member> member) {
+        this.member = member;
     }
 
     public Date getDateTook() {
