@@ -19,8 +19,8 @@ public class Book {
     @Column(name="count")
     private int count;
 
-    @ManyToMany( mappedBy = "book")
-    private List<BookLending> bookLending;
+    @ManyToMany(mappedBy = "book")
+    private List<BookLending> bookLeading;
 
     public Book(){
 
@@ -59,12 +59,12 @@ public class Book {
     }
 
 
-    public List<BookLending> getBookLending() {
-        return bookLending;
+    public List<BookLending> getBookLeading() {
+        return bookLeading;
     }
 
-    public void setBookLending(List<BookLending> bookLending) {
-        this.bookLending = bookLending;
+    public void setBookLeading(List<BookLending> bookLeading) {
+        this.bookLeading = bookLeading;
     }
 
 

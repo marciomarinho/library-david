@@ -4,7 +4,7 @@
     <form action="#" th:action="@{/reader/createReader}" th:object="${reader}" method="post">
         <table class="table table-striped">
             <tr>
-                <td>Full_Name: </td>
+                <td>Full Name: </td>
                 <td><input type="text" th:field="*{fullName}"/></td>
                 <!--<td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name error</td>-->
             </tr>

@@ -16,8 +16,8 @@ public class Member {
     @Column(name="book_in_hand")
     private String bookInHand;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "reader")
-    private List<BookLending> bookLending;
+    @ManyToMany( mappedBy = "reader")
+    private List<BookLending> bookLeading;
 
     public Member(){
 
@@ -39,12 +39,12 @@ public class Member {
         this.fullName = fullName;
     }
 
-    public List<BookLending> getBookLending() {
-        return bookLending;
+    public List<BookLending> getBookLeading() {
+        return bookLeading;
     }
 
-    public void setBookLending(List<BookLending> bookLending) {
-        this.bookLending = bookLending;
+    public void setBookLeading(List<BookLending> bookLeading) {
+        this.bookLeading = bookLeading;
     }
 
     public String getBookInHand() {

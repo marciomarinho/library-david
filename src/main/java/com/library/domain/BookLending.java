@@ -11,11 +11,11 @@ public class BookLending {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Book> book;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Member> member;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Member> reader;
 
 
     @Column(name="date_took")
@@ -44,12 +44,12 @@ public class BookLending {
         this.id = id;
     }
 
-    public List<Member> getMember() {
-        return member;
+    public List<Member> getReader() {
+        return reader;
     }
 
-    public void setMember(List<Member> member) {
-        this.member = member;
+    public void setReader(List<Member> reader) {
+        this.reader = reader;
     }
 
     public Date getDateTook() {

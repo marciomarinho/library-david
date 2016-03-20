@@ -5,25 +5,31 @@
         <table class="table table-striped">
             <tr>
                 <td>Name Book: </td>
-                <td><input type="text" th:field="*{book}"/></td>
-                <!--<td th:if="${#fields.hasErrors('book')}" th:errors="*{book}">Name error</td>-->
+                <td>
+                    <select th:field="*{book}">
+                        <option th:each="books : ${books}" th:value="${books.id}" th:text="${books.nameBook}"></option>
+                    </select>
+                </td>
 
             </tr>
             <tr>
                 <td>Reader Full Name: </td>
-                <td><input type="text" th:field="*{reader}"/></td>
-                <!--<td th:if="${#fields.hasErrors('reader')}" th:errors="*{reader}">Name error</td>-->
+                <td>
+                    <select th:field="*{reader}">
+                        <option th:each="readers : ${readers}" th:value="${readers.id}" th:text="${readers.fullName}"></option>
+                    </select>
+                </td>
 
             </tr>
             <tr>
-                <td>Date_Took: </td>
+                <td>Date Took: </td>
                 <td><input type="text" th:field="*{dateTook}"/></td>
 
             </tr>
             <tr>
-                <td>Date_Back: </td>
+                <td>Date Back: </td>
                 <td><input type="text" th:field="*{dateBack}"/></td>
-                <!--<td th:if="${#fields.hasErrors('dateBack')}" th:errors="*{dateBack}">Name error</td>-->
+
 
             </tr>
 
