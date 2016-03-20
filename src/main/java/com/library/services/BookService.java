@@ -1,6 +1,6 @@
 package com.library.services;
 
-import com.library.domain.entities.Book;
+import com.library.domain.Book;
 import com.library.domain.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

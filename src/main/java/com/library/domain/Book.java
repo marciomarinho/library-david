@@ -1,4 +1,4 @@
-package com.library.domain.entities;
+package com.library.domain;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Book {
     private int count;
 
     @ManyToMany( mappedBy = "book")
-    private List<BookLeading> bookLeading;
+    private List<BookLending> bookLending;
 
     public Book(){
 
@@ -59,12 +59,12 @@ public class Book {
     }
 
 
-    public List<BookLeading> getBookLeading() {
-        return bookLeading;
+    public List<BookLending> getBookLending() {
+        return bookLending;
     }
 
-    public void setBookLeading(List<BookLeading> bookLeading) {
-        this.bookLeading = bookLeading;
+    public void setBookLending(List<BookLending> bookLending) {
+        this.bookLending = bookLending;
     }
 
 

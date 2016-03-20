@@ -1,6 +1,6 @@
 package com.library.services;
 
-import com.library.domain.entities.BookLeading;
+import com.library.domain.BookLending;
 import com.library.domain.repositories.BookLeadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,13 +15,13 @@ public class BookLeadingService {
     @Qualifier("bookLeadingRepository")
     private BookLeadingRepository bookLeadingRepository;
 
-    public BookLeading addBookLeading(BookLeading bookLeading) {
-        BookLeading addBookLeading = bookLeadingRepository.saveAndFlush(bookLeading);
-        return addBookLeading;
+    public BookLending addBookLeading(BookLending bookLending) {
+        BookLending addBookLending = bookLeadingRepository.saveAndFlush(bookLending);
+        return addBookLending;
     }
 
 
-    public List<BookLeading> getAll() {
+    public List<BookLending> getAll() {
         return bookLeadingRepository.findAll();
     }
 

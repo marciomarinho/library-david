@@ -1,11 +1,11 @@
 package com.library.domain.repositories;
 
 
-import com.library.domain.entities.BookLeading;
+import com.library.domain.BookLending;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookLeadingRepository extends JpaRepository<BookLeading,Long> {
+public interface BookLeadingRepository extends JpaRepository<BookLending,Long> {
 
 }
