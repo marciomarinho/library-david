@@ -14,9 +14,14 @@ public class BookLending {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Book> book;
 
+    //TODO: Once you remove the below List<Member> remove this transient (non-persistent) annotation.
+    @Transient
+    private Member member;
+
+    //TODO: Get rid of this thing. it does not exist !!!
+    //TODO: You have only 1 member per lending. You cannot lend the same book to 2 people at same time !!!
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Member> reader;
-
 
     @Column(name="date_took")
     private Date dateTook;
@@ -68,7 +73,12 @@ public class BookLending {
         this.dateBack = dateBack;
     }
 
+    public Member getMember() {
+        return this.member;
+    }
 
-
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
 }

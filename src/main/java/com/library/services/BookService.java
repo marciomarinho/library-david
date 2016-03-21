@@ -18,7 +18,7 @@ public class BookService {
     }
 
     public Book addBook(Book book) {
-        Book saveBook = bookRepository.saveAndFlush(book);
+        Book saveBook = bookRepository.save(book);
         return saveBook;
     }
 
@@ -27,16 +27,19 @@ public class BookService {
     }
 
     public Book editBook(Book book) {
-        Book editBook = bookRepository.saveAndFlush(book);
+        Book editBook = bookRepository.save(book);
         return editBook;
     }
 
-    public List<Book> getAll() {
+    public Iterable<Book> getAll() {
         return bookRepository.findAll();
     }
 
     public Book findOne(long id) {
-        Book book = bookRepository.findOne(id);
-        return book;
+        return bookRepository.findOne(id);
+    }
+
+    public Book save(Book book) {
+        return bookRepository.save(book);
     }
 }

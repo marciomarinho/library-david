@@ -23,7 +23,13 @@ public class Book {
     private List<BookLending> bookLeading;
 
     public Book(){
+    }
 
+    public Book(long id, String nameBook, String author, int count) {
+       this.id = id;
+        this.nameBook = nameBook;
+        this.author = author;
+        this.count = count;
     }
 
     public int getCount() {

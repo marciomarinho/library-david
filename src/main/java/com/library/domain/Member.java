@@ -20,7 +20,11 @@ public class Member {
     private List<BookLending> bookLeading;
 
     public Member(){
+    }
 
+    public Member(long id, String fullName) {
+        this.id = id;
+        this.fullName = fullName;
     }
 
     public long getId() {
