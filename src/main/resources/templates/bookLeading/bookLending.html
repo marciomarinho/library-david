@@ -7,7 +7,8 @@
 
     <h1 align="center">All information about books and readers </h1>
     <a class="btn btn-primary" href="/bookLeading/addNewBookLeading">Take a book</a>
-    <!--<span th:text="${expired}" ></span>-->
+    <a class="btn btn-primary" href="/bookLeading/returnBookLeading">Return a book</a>
+
 
     <table class="table table-striped">
         <thead>
@@ -35,13 +36,13 @@
             <td th:text="${bookLeading.dateTook}"></td>
             <td th:text="${bookLeading.dateBack}"></td>
 
-            <td>
-                <a th:href="@{'/bookLeading/{id}/deleteBookLeading'(id=${bookLeading.id})}" class="delete" th:attr="name=${bookLeading}">
-                        <span class="fa-stack">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </span>
-                </a>
-            </td>
+            <!--<td>-->
+                <!--<a th:href="@{'/bookLeading/{id}/deleteBookLeading'(id=${bookLeading.id})}" class="delete" th:attr="name=${bookLeading}">-->
+                        <!--<span class="fa-stack">-->
+                            <!--<i class="glyphicon glyphicon-trash"></i>-->
+                        <!--</span>-->
+                <!--</a>-->
+            <!--</td>-->
         </tr>
         </tbody>
     </table>

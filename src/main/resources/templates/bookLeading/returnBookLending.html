@@ -1,0 +1,31 @@
+<html layout:decorator="layout" xmlns:th="http://www.thymeleaf.org">
+<div layout:fragment="content">
+
+    <form action="#" th:action="@{/bookLeading/deleteBookLeading}"  th:object="${bookLeading}" method="post">
+        <table class="table table-striped">
+            <tr>
+                <td>Name Book: </td>
+                <td>
+                    <select th:field="*{book}">
+                        <option th:each="books : ${bookName}" th:value="${books.id}" th:text="${books.nameBook}" ></option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Reader Full Name: </td>
+                <td>
+                    <select th:field="*{reader}">
+                        <option th:each="readers : ${fullName}" th:value="${readers.id}" th:text="${readers.fullName}"></option>
+                    </select>
+                </td>
+
+            </tr>
+
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </table>
+
+    </form>
+
+</div>
+</html>
