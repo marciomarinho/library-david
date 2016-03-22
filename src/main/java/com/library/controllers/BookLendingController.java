@@ -84,7 +84,7 @@ public class BookLendingController {
      * If not, we than have to cope with the fact the member can go to the counter and ask for the book,
      * so, we have to check if the book has any exemplary available.
      *
-     * @see com.library.controllers.BookLendingControllerTest
+     //* @see com.library.controllers.BookLendingControllerTest
      * @param bookLeading
      * @return
      */
@@ -94,23 +94,41 @@ public class BookLendingController {
 
         // Dumb implementation, does not take in account about the quantities
         Map<Long, Book> chosenBooks = new HashMap<>();
+        Map<Long,Member> chosenMembers = new HashMap<>();
 
         for (Book book : bookLeading.getBook()) {
             //Look inside the map, if exists get from there. If not, then get from the repository.
             Book chosenBook;
+            //Totally the same as book we find a member and set bookInHand value from book
+            for (Member member : bookLeading.getReader()) {
 
-            if (chosenBooks.containsKey(book.getId())) {
-                chosenBook = chosenBooks.get(book.getId());
-            } else {
-                chosenBook = bookService.findOne(book.getId());
+                Member chosenMember;
+
+                if (chosenBooks.containsKey(book.getId())) {
+                    System.out.println(chosenBooks.containsKey(book.getId()));
+                    chosenBook = chosenBooks.get(book.getId());
+                } else {
+                    chosenBook = bookService.findOne(book.getId());
+                }
+                if(chosenMembers.containsKey(member.getId())){
+                    System.out.println(chosenMembers.containsKey(member.getId()));
+                    chosenMember = chosenMembers.get(member.getId());
+                } else {
+                    chosenMember = readerService.findOne(member.getId());
+                }
+                chosenBook.setCount(chosenBook.getCount() - 1);
+                chosenMember.setBookInHand(chosenBook.getNameBook());
+                chosenBooks.put(chosenBook.getId(), chosenBook);
+                chosenMembers.put(chosenMember.getId(),chosenMember);
             }
-            chosenBook.setCount(chosenBook.getCount()-1);
-            chosenBooks.put(chosenBook.getId(), chosenBook);
         }
 
         // We should save the Books with new values after subtracted their the quantities.
         for (Book book : chosenBooks.values()) {
             bookService.save(book);
+        }
+        for(Member member : chosenMembers.values()){
+            readerService.addReader(member);
         }
 
         bookLeadingService.addBookLeading(bookLeading);
@@ -119,32 +137,57 @@ public class BookLendingController {
         return "redirect:/bookLeading";
     }
 
-// TODO: YOU CAN KILL THIS ONE IF YOU WANT !!!
-//    @RequestMapping(value="/createBookLeading",method=RequestMethod.POST)
-//    public String createBookLeading(@ModelAttribute BookLending bookLeading){
-//        for(Book bookName : bookLeading.getBook()){
-//           counter = bookName.getCount() - 1;
-//            bookName.setCount(counter);
-//            bookService.editBook(bookName);
-//            for(Member fullName : bookLeading.getReader()){
-//               for(Member secondMember : readerService.getAll()){
-//                   if(secondMember.getFullName().equals(fullName.getFullName())){
-//                       secondMember.setBookInHand(bookName.getNameBook());
-//                       readerService.editReader(secondMember);
-//                   }
-//               }
-//            }
-//        }
-//        bookLeadingService.addBookLeading(bookLeading);
-//        return "redirect:/bookLeading";
-//    }
-
+    @Transactional
     @RequestMapping(value = "/deleteBookLeading", method = RequestMethod.POST)
     public String deleteBookLeading(@ModelAttribute BookLending bookLeading) {
-        for (Book book : bookLeading.getBook()) {
-            for (Member member : bookLeading.getReader()) {
 
+        Map<Long, Book> chosenBooks = new HashMap<>();
+        Map<Long, Member> choseMembers = new HashMap<>();
+
+
+                    for (Book book : bookLeading.getBook()) {
+                        Book chosenBook;
+                        for (Member member : bookLeading.getReader()) {
+                            Member chosenMember;
+
+                            if (chosenBooks.containsKey(book.getId())) {
+                                System.out.println(chosenBooks.containsKey(book.getId()));
+                                chosenBook = chosenBooks.get(book.getId());
+                            } else {
+                                chosenBook = bookService.findOne(book.getId());
+                            }
+                            if (choseMembers.containsKey(member.getId())) {
+                                System.out.println(choseMembers.containsKey(member.getId()));
+                                chosenMember = choseMembers.get(member.getId());
+                            } else {
+                                chosenMember = readerService.findOne(member.getId());
+                            }
+
+                                chosenBook.setCount(chosenBook.getCount() + 1);
+                                chosenMember.setBookInHand("");
+                                chosenBooks.put(chosenBook.getId(), chosenBook);
+                                choseMembers.put(chosenMember.getId(), chosenMember);
+
+
+                            for (BookLending bookLendingss : bookLeadingService.getAll()) {
+                                for (Book allBook : bookLendingss.getBook()) {
+                                    for(Member allMember : bookLendingss.getReader()) {
+
+                                if (allBook.getNameBook().equals(book.getNameBook()) &&  allMember.getFullName().equals(member.getFullName())) {
+                                System.out.println("aloha");
+                                bookLeadingService.delete(bookLeading.getId());
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        for (Book book : chosenBooks.values()) {
+            bookService.save(book);
+        }
+        for (Member member : choseMembers.values()) {
+            readerService.addReader(member);
         }
 
         return "redirect:/bookLeading";
